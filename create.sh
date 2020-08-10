@@ -47,7 +47,8 @@ for assinatura in "${subscription[@]}"
   echo
   echo "Set Subscription $assinatura $count1/${#subscription[@]}"
   az account set --subscription $assinatura
-
+  
+  echo
   echo "Criando Resource Group da Subscription $assinatura"
 
   az group create --name myResourceGroup --location westeurope --only-show-errors
