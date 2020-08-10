@@ -32,7 +32,7 @@ for i in {1..6}
   echo "Digite Assinatura $i:"
   read imput1;
   
-  if [ -z $imput1 ]
+  if [ -n $imput1 ]
   then
      subscription[$i]=$imput1
   fi
@@ -44,6 +44,7 @@ count1=1
 
 for assinatura in "${subscription[@]}"
  do
+  echo
   echo "Set Subscription $assinatura $count1/${#subscription[@]}"
   az account set --subscription $assinatura
 
