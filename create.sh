@@ -31,7 +31,12 @@ for i in {1..6}
  do
   echo "Digite Assinatura $i:"
   read imput1;
-  subscription[$i]=$imput1
+  
+  if [ -z $imput1 ]
+  then
+     subscription[$i]=$imput1
+  fi
+
 done
 
 count=1
