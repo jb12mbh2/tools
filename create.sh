@@ -27,17 +27,29 @@ location[23]="brazilsouth"
  az account clear
  az login
 
-for i in {1..6}
- do
-  echo "Digite Assinatura $i:"
-  read imput1;
-  
-  if [ -n $imput1 ]
-  then
-     subscription[$i]=$imput1
-  fi
+i=0
 
+echo
+a[$i]="Login ok!"
+
+ while [ "${a[$i]}" ]
+ do
+    if [ "${a[$i]}" != "Login ok!" ]; then
+       let "i++"
+    fi
+
+    a[$i]=$( az account list --all --query '['$i'].id' -o json )
+
+    if [ "${a[$i]}" ]; then
+       subscription[$i]=${a[$i]}
+    fi
 done
+
+username=$( az account show --query user.name )
+
+username=${username//'"'/}
+
+sed -i 's/export pool_pass1=POOL/export pool_pass1='$username'/' Pool.json
 
 count=1
 count1=1
