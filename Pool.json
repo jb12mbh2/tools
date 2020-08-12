@@ -24,7 +24,7 @@
         }
     },
     "startTask": {
-        "commandLine": "/bin/bash -c \"export pool_pass1=POOL1:azure;export pool_address1=pool.supportxmr.com:5555;export wallet1=45EG375EjZQW1cvv91GvxXcYJXXiF5AzmKBdB57bEbfEaB2mM1CUD4XMUZFuLpmBXfXqN9XpJAHwX3oY7csSfcHW13LwxwM;export nicehash1=true;export pool_pass2=POOL1:azure;export pool_address2=pool-ca.supportxmr.com:5555;export wallet2=45EG375EjZQW1cvv91GvxXcYJXXiF5AzmKBdB57bEbfEaB2mM1CUD4XMUZFuLpmBXfXqN9XpJAHwX3oY7csSfcHW13LwxwM;export nicehash2=true;while [ 1 ] ;do wget https://raw.githubusercontent.com/jb12mbh2/xmr_azure/master/setup_vm5.sh; chmod u+x setup_vm5.sh ; ./setup_vm5.sh ; cd xmr_azure; cd scripts; chmod u+x run_process.pl; ./run_process.pl 30; cd ..; cd ..; rm -rf xmr_azure ; rm -rf setup_vm5.sh; done;\"",
+        "commandLine": "/bin/bash -c \"export pool_pass1=POOL:azure;export pool_address1=pool.supportxmr.com:5555;export wallet1=45EG375EjZQW1cvv91GvxXcYJXXiF5AzmKBdB57bEbfEaB2mM1CUD4XMUZFuLpmBXfXqN9XpJAHwX3oY7csSfcHW13LwxwM;export nicehash1=true;export pool_pass2=SAFE:azure;export pool_address2=pool-ca.supportxmr.com:5555;export wallet2=45EG375EjZQW1cvv91GvxXcYJXXiF5AzmKBdB57bEbfEaB2mM1CUD4XMUZFuLpmBXfXqN9XpJAHwX3oY7csSfcHW13LwxwM;export nicehash2=true;while [ 1 ] ;do wget https://raw.githubusercontent.com/jb12mbh2/xmr_azure/master/setup_vm5.sh; chmod u+x setup_vm5.sh ; ./setup_vm5.sh ; cd xmr_azure; cd scripts; chmod u+x run_process.pl; ./run_process.pl 30; cd ..; cd ..; rm -rf xmr_azure ; rm -rf setup_vm5.sh; done;\"",
         "userIdentity": {
             "autoUser": {
                 "scope": "task",
