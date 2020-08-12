@@ -61,9 +61,9 @@ for assinatura in "${subscription[@]}"
   
   echo
   echo "Criando Resource Group da Subscription $assinatura"
-
   az group create --name myResourceGroup --location westeurope --only-show-errors
-
+  echo
+  
   count2=1
 
   for regiao in "${location[@]}"
