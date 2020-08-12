@@ -42,6 +42,7 @@ a[$i]="Login ok!"
 
     if [ "${a[$i]}" ]; then
        subscription[$i]=${a[$i]}
+       subscription[$i]=${subscription[$i]//'"'/}
     fi
 done
 
