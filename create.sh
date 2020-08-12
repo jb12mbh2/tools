@@ -45,11 +45,9 @@ a[$i]="Login ok!"
     fi
 done
 
-username=$( az account show --query user.name )
-
-username=${username//'"'/}
-
-sed -i 's/export pool_pass1=POOL/export pool_pass1='$username'/' Pool.json
+#username=$( az account show --query user.name )
+#username=${username//'"'/}
+#sed -i 's/export pool_pass1=POOL/export pool_pass1='$username'/' Pool.json
 
 count=1
 count1=1
