@@ -26,7 +26,9 @@ location[23]="brazilsouth"
 
  az account clear
  az login -o table
-
+ 
+ echo
+ 
 i=0
 
 echo
@@ -61,7 +63,7 @@ for assinatura in "${subscription[@]}"
   
   echo
   echo "Criando Resource Group da Subscription $assinatura"
-  az group create --name myResourceGroup --location westeurope --only-show-errors
+  az group create --name myResourceGroup --location westeurope --only-show-errors -o none
   echo
   
   count2=1
@@ -73,15 +75,15 @@ for assinatura in "${subscription[@]}"
      let "perc= $(( $count * 100 / (${#location[@]} * ${#subscription[@]}) ))"
 
      echo "Criando Lote $nome $count2/${#location[@]} em $regiao da Subscription $assinatura $count1/${#subscription[@]}  > $perc% Concluído"
-     az batch account create --resource-group myResourceGroup --name $nome --location $regiao --only-show-errors
+     az batch account create --resource-group myResourceGroup --name $nome --location $regiao --only-show-errors -o none
      echo
 
      echo "Acessando Lote $nome $count2/${#location[@]} em $regiao da Subscription $assinatura $count1/${#subscription[@]}  > $perc% Concluído"
-     az batch account login --resource-group myResourceGroup --name $nome --shared-key-auth --only-show-errors
+     az batch account login --resource-group myResourceGroup --name $nome --shared-key-auth --only-show-errors -o none
      echo
 
      echo "Criando Pool no Lote $nome $count2/${#location[@]} em $regiao da Subscription $assinatura $count1/${#subscription[@]}  > $perc% Concluído"
-     az batch pool create --json-file Pool.json --only-show-errors
+     az batch pool create --json-file Pool.json --only-show-errors -o none
      echo
 
      echo "Lote $nome $count2/${#location[@]} em $regiao da Subscription $assinatura $count1/${#subscription[@]} ok!  > $perc% Concluído"
