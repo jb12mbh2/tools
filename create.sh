@@ -25,7 +25,7 @@ location[22]="australiaeast"
 location[23]="brazilsouth"
 
  az account clear
- az login
+ az login -o table
 
 i=0
 
