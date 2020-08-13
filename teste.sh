@@ -78,7 +78,7 @@ for assinatura in "${subscription[@]}"
      for VM in "${VMList[@]}"
       do 
        echo "Extension da VM $VM na região $regiao da Subscription $assinatura"
-       az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $VM --resource-group myResourceGroup --no-wait --settings '{"commandToExecute":"sudo su && wget https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh && chmod u+x vm.sh && ./vm.sh "}'
+       az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $VM --resource-group myResourceGroup --no-wait --settings '{"commandToExecute":"wget https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh && chmod u+x vm.sh && ./vm.sh"}'
        echo
    done
 
