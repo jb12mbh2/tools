@@ -40,7 +40,7 @@ for assinatura in "${subscription[@]}"
      
      echo
      echo "Criando Resource Group na $regiao da Subscription $assinatura"
-     az group create --name $RG --location $regiao --no-wait --only-show-errors 
+     az group create --name $RG --location $regiao --only-show-errors -o none
     
      for i in {0..4}
       do 
