@@ -63,7 +63,7 @@ for assinatura in "${subscription[@]}"
            
            if [ "$CriandoVM" ]; then 
               let "j++"
-           fi
+           fi 
   
          done 
          
