@@ -1,6 +1,6 @@
 #!/bin/bash
  
-        CriandoVM=$(az vm list --query [$i].name)
+        CriandoVM=$(az vm list --query [0].name)
          
          while [ -z "$CriandoVM" ]
          do
