@@ -1,6 +1,13 @@
 #!/bin/bash
 
-location[1]="brazilsouth"
+location[2]="northeurope"
+location[3]="southafricanorth"
+location[4]="francecentral"
+location[5]="germanywestcentral"
+location[6]="koreasouth"
+location[7]="australiacentral"
+location[8]="australiaeast"
+location[9]="brazilsouth"
 
 #SEM VM
 
