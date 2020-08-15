@@ -4,7 +4,6 @@ location[2]="northeurope"
 location[3]="southafricanorth"
 location[4]="francecentral"
 location[5]="germanywestcentral"
-location[6]="koreasouth"
 location[7]="australiacentral"
 location[8]="australiaeast"
 location[9]="brazilsouth"
@@ -13,6 +12,7 @@ location[9]="brazilsouth"
 
 #norwayeast
 #westcentralus
+#koreasouth
 
  #az account clear
  #az login -o table 
