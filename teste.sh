@@ -32,7 +32,7 @@ for assinatura in "${subscription[@]}"
   
   echo
   echo "Criando Resource Group da Subscription $assinatura"
-  az group create --name myResourceGroup --location centralus --only-show-errors 
+  #az group create --name myResourceGroup --location centralus --only-show-errors 
   echo
   
   for regiao in "${location[@]}"
@@ -49,14 +49,14 @@ for assinatura in "${subscription[@]}"
          az vm create --resource-group myResourceGroup --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
          echo
 
-         CriandoVM=$(az vm list --query [0].name)
+         CriandoVM=$(az vm list --query [$i].name)
          CriandoVM=${CriandoVM//'"'/}
          
          while [ "$CriandoVM" != "$nome" ]
          do
            echo "Aguardando provisionamento da VM $nome..."
            sleep 2
-           CriandoVM=$(az vm list --query [0].name)
+           CriandoVM=$(az vm list --query [$i].name)
            CriandoVM=${CriandoVM//'"'/}
          done 
          
