@@ -1,28 +1,7 @@
 #!/bin/bash
 
 location[1]="centralus"
-location[2]="uksouth"
-location[3]="ukwest"
-location[4]="australiasoutheast"
-location[5]="canadacentral"
-location[6]="southcentralus"
-location[7]="westcentralus"
-location[8]="eastus"
-location[9]="eastus2"
-location[10]="westus"
-location[11]="westus2"
-location[12]="koreacentral"
-location[13]="eastasia"
-location[14]="southeastasia"
-location[15]="norwayeast"
-location[16]="northeurope"
-location[17]="southafricanorth"
-location[18]="francecentral"
-location[19]="germanywestcentral"
-location[20]="koreasouth"
-location[21]="australiacentral"
-location[22]="australiaeast"
-#location[23]="brazilsouth"
+
 
  #az account clear
  #az login -o table
@@ -71,16 +50,20 @@ for assinatura in "${subscription[@]}"
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
          az vm create --resource-group myResourceGroup --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
          echo
-         
+
+         echo "Criando VM $nome"
          CriandoVM=$(az vm list --query [$i].name)
          
          while [ -z "$CriandoVM" ]
          do
-            echo "Extension da VM ${VMList[$i]} na região $regiao da Subscription $assinatura"
-            az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $VM --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh"}'
-            echo   
-         done
+           sleep 5
+           CriandoVM=$(az vm list --query [$i].name)
+         done 
          
+         echo "Extension da VM ${VMList[$i]} na região $regiao da Subscription $assinatura"
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $VM --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh"}'
+         echo         
+  
      done
      
   done
