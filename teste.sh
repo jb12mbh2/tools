@@ -60,7 +60,11 @@ for assinatura in "${subscription[@]}"
            #sleep 5
            CriandoVM=$(az vm list --query [$j].name)
            CriandoVM=${CriandoVM//'"'/}
-           let "j++"
+           
+           if [ "$CriandoVM" ]; then 
+              let "j++"
+           if
+  
          done 
          
          echo
