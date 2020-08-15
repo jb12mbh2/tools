@@ -2,10 +2,8 @@
 
 location[1]="centralus"
 
-
  #az account clear
- #az login -o table
- 
+ #az login -o table 
 
 i=0
 
@@ -52,16 +50,18 @@ for assinatura in "${subscription[@]}"
          echo
 
          echo "Criando VM $nome"
-         CriandoVM=$(az vm list --query [$i].name)
+         CriandoVM=$(az vm list --query [0].name)
+         CriandoVM=${CriandoVM//'"'/}
          
-         while [ -z "$CriandoVM" ]
+         while [ $CriandoVM != $nome ]
          do
-           sleep 5
-           CriandoVM=$(az vm list --query [$i].name)
+           sleep 2
+           CriandoVM=$(az vm list --query [0].name)
+           CriandoVM=${CriandoVM//'"'/}
          done 
          
          echo "Extension da VM ${VMList[$i]} na região $regiao da Subscription $assinatura"
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name ${VMList[$i]} --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh"}'
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name ${VMList[$i]} --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh $nome"}'
          echo         
   
      done
