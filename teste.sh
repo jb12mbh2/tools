@@ -1,6 +1,6 @@
 #!/bin/bash
 
-location[1]="ukwest"
+location[1]="canadacentral"
 location[2]="australiasoutheast"
 
  #az account clear
@@ -55,7 +55,7 @@ for assinatura in "${subscription[@]}"
          
          j=0         
          echo
-         echo "Aguardando provisionamento da VM $nome..."
+         
          
          while [ "$CriandoVM" != "$nome" ]
          do           
@@ -65,7 +65,9 @@ for assinatura in "${subscription[@]}"
            if [ "$CriandoVM" ]; then 
               let "j++"
            fi 
-  
+           
+           echo "Aguardando provisionamento da VM $nome...(="$CriandoVM")"
+           
          done 
          
          echo
@@ -75,7 +77,7 @@ for assinatura in "${subscription[@]}"
          cmd="$cmd"
          #echo $cmd
          
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh TESTE2 "}'
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh TESTE3 "}'
      done
      
   done
