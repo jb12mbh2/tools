@@ -1,10 +1,10 @@
 #!/bin/bash
 
-location[1]="southcentralus"
-location[2]="westcentralus"
-location[3]="eastus"
-location[4]="eastus2"
-location[5]="westus"
+location[1]="eastus"
+location[2]="eastus2"
+location[3]="westus"
+
+#westcentralus sem VM
 
  #az account clear
  #az login -o table 
