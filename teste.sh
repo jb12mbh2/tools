@@ -1,6 +1,6 @@
 #!/bin/bash
 
-location[1]="centralus"
+location[1]="uksouth"
 
  #az account clear
  #az login -o table 
@@ -62,7 +62,7 @@ for assinatura in "${subscription[@]}"
          
          echo
          echo "Criando Extension da VM $nome na região $regiao da Subscription $assinatura"
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh $nome"}'
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh "$nome" "}'
          echo         
   
      done
