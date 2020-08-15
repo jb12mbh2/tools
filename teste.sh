@@ -61,21 +61,15 @@ for assinatura in "${subscription[@]}"
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
          az vm create --resource-group $RG --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
 
-         j=0         
          echo
-         
-         CriandoVM=$(az vm list --query [$j].name -o tsv)     
+         CriandoVM=$(az vm list --query "[?name=='$nome'].{Nome:name}" -o tsv)     
 
          while [ "$CriandoVM" != "$nome" ]
          do
-           CriandoVM=$(az vm list --query [$j].name -o tsv)
-
-           if [ "$CriandoVM" ]; then
-              echo "[$j] $CriandoVM" = "$nome"
-              let "j++"
-           else
-             j=0
-           fi
+         
+           CriandoVM=$(az vm list --query "[?name=='$nome'].{Nome:name}" -o tsv)
+           sleep 1
+           echo "[$j] $CriandoVM" = "$nome"
 
          done
          
