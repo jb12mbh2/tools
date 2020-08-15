@@ -1,6 +1,7 @@
 #!/bin/bash
 
-location[1]="uksouth"
+location[1]="ukwest"
+location[2]="australiasoutheast"
 
  #az account clear
  #az login -o table 
