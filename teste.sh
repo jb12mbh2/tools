@@ -52,12 +52,15 @@ for assinatura in "${subscription[@]}"
          CriandoVM=$(az vm list --query [$i].name)
          CriandoVM=${CriandoVM//'"'/}
          
+         j=0
+         
          while [ "$CriandoVM" != "$nome" ]
          do
            echo "Aguardando provisionamento da VM = ($CriandoVM != $nome)..."
-           sleep 5
-           CriandoVM=$(az vm list --query [$i].name)
+           #sleep 5
+           CriandoVM=$(az vm list --query [$j].name)
            CriandoVM=${CriandoVM//'"'/}
+           let j++
          done 
          
          echo
