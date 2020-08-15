@@ -41,7 +41,7 @@ for assinatura in "${subscription[@]}"
      echo
      echo "Criando Resource Group na $regiao da Subscription $assinatura"
      az group create --name $RG --location $regiao --only-show-errors -o none
-    
+     
      for i in {0..4}
       do 
          nome=$(date +"%d%m%Y%H%M%S")
@@ -50,25 +50,25 @@ for assinatura in "${subscription[@]}"
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
          az vm create --resource-group $RG --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
 
-         CriandoVM=$(az vm list --query [$i].name)
-         CriandoVM=${CriandoVM//'"'/}
-         
          j=0         
          echo
          
-         
+         CriandoVM=$(az vm list --query [$j].name)
+         CriandoVM=${CriandoVM//'"'/}         
+
          while [ "$CriandoVM" != "$nome" ]
-         do           
+         do
            CriandoVM=$(az vm list --query [$j].name)
            CriandoVM=${CriandoVM//'"'/}
-           
-           echo "[$j] Aguardando provisionamento da VM $nome...(="$CriandoVM")"
-           
-           if [ "$CriandoVM" ]; then 
-              let "j++"
-           fi 
 
-         done 
+           if [ "$CriandoVM" ]; then
+              echo "[$j] $CriandoVM" = "$nome"
+              let "j++"
+           else
+             j=0
+           fi
+
+         done
          
          echo
          echo "Criando Extension da VM $nome na região $regiao da Subscription $assinatura"
