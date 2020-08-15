@@ -34,50 +34,48 @@ for assinatura in "${subscription[@]}"
    do
      echo
      echo "Região $regiao da Subscription $assinatura"
+     
+     RG=RG_$regiao
+     
      echo
-     
-     RG=RG$(date +"%d%m%Y%H%M%S")
-     
      echo "Criando Resource Group na $regiao da Subscription $assinatura"
-     az group create --name $RG --location $regiao --only-show-errors 
-     echo    
-     
+     az group create --name $RG --location $regiao --no-wait --only-show-errors 
+    
      for i in {0..4}
       do 
          nome=$(date +"%d%m%Y%H%M%S")
-         #VMList[$i]=$nome
+         
+         echo
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
          az vm create --resource-group $RG --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
-         echo
 
          CriandoVM=$(az vm list --query [$i].name)
          CriandoVM=${CriandoVM//'"'/}
          
          j=0
          
+         echo
+         echo "Aguardando provisionamento da VM $nome..."
+         
          while [ "$CriandoVM" != "$nome" ]
          do           
-           #sleep 5
            CriandoVM=$(az vm list --query [$j].name)
            CriandoVM=${CriandoVM//'"'/}
            
            if [ "$CriandoVM" ]; then 
               let "j++"
            fi 
-           
-           echo "Aguardando provisionamento da VM = ($CriandoVM != $nome)..."
   
          done 
          
          echo
          echo "Criando Extension da VM $nome na região $regiao da Subscription $assinatura"
-         cmd='"commandToExecute"':'"sh vm.sh"'
          
+         cmd='"commandToExecute"':'"sh vm.sh"'
          cmd="$cmd"
-         echo $cmd
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name "CustomScript" --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],$cmd}'
-         echo        
-  
+         #echo $cmd
+         
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh TESTE "}'
      done
      
   done
