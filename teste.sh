@@ -1,18 +1,17 @@
 #!/bin/bash
 
-location[1]="westus2"
-location[2]="koreacentral"
-location[3]="eastasia"
-location[4]="southeastasia"
-location[5]="norwayeast"
-location[6]="northeurope"
-location[7]="southafricanorth"
-location[8]="francecentral"
-location[9]="germanywestcentral"
-location[10]="koreasouth"
-location[11]="australiacentral"
-location[12]="australiaeast"
-location[13]="brazilsouth"
+location[1]="koreacentral"
+location[2]="eastasia"
+location[3]="southeastasia"
+location[4]="norwayeast"
+location[5]="northeurope"
+location[6]="southafricanorth"
+location[7]="francecentral"
+location[8]="germanywestcentral"
+location[9]="koreasouth"
+location[10]="australiacentral"
+location[11]="australiaeast"
+location[12]="brazilsouth"
 
 #westcentralus sem VM
 
@@ -90,7 +89,7 @@ for assinatura in "${subscription[@]}"
          cmd="$cmd"
          #echo $cmd
          
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh $regiao "}'
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh VM_$regiao "}'
      done
      
   done
