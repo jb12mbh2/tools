@@ -29,17 +29,16 @@ for assinatura in "${subscription[@]}"
   echo
   echo "Set Subscription $assinatura"
   az account set --subscription $assinatura
-  
-  echo
-  echo "Criando Resource Group da Subscription $assinatura"
-  #az group create --name myResourceGroup --location centralus --only-show-errors 
-  echo
-  
+
   for regiao in "${location[@]}"
    do
      echo
      echo "Região $regiao da Subscription $assinatura"
      echo
+     
+     echo "Criando Resource Group na $regiao da Subscription $assinatura"
+     #az group create --name myResourceGroup --location $regiao --only-show-errors 
+     echo    
      
      for i in {0..4}
       do 
