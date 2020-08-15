@@ -44,12 +44,12 @@ for assinatura in "${subscription[@]}"
      for i in {0..4}
       do 
          nome=$(date +"%d%m%Y%H%M%S")
-         VMList[$i]=$nome
+         #VMList[$i]=$nome
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
          az vm create --resource-group myResourceGroup --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
          echo
 
-         echo "Criando VM $nome"
+         echo "Criando VM $nome..."
          CriandoVM=$(az vm list --query [0].name)
          CriandoVM=${CriandoVM//'"'/}
          
@@ -60,8 +60,8 @@ for assinatura in "${subscription[@]}"
            CriandoVM=${CriandoVM//'"'/}
          done 
          
-         echo "Extension da VM ${VMList[$i]} na região $regiao da Subscription $assinatura"
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name ${VMList[$i]} --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh $nome"}'
+         echo "Criando Extension da VM $nome na região $regiao da Subscription $assinatura"
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh $nome"}'
          echo         
   
      done
