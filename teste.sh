@@ -19,7 +19,6 @@ location[9]="brazilsouth"
 
 i=0
 
-echo
 a[$i]="Login ok!"
 
  while [ "${a[$i]}" ]
