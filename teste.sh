@@ -2,7 +2,10 @@
 
 location[1]="brazilsouth"
 
-#westcentralus sem VM
+#SEM VM
+
+#norwayeast
+#westcentralus
 
  #az account clear
  #az login -o table 
@@ -55,7 +58,7 @@ for assinatura in "${subscription[@]}"
            let "j++"
            sleep 1
            CriandoVM=$(az vm list --query "[?name=='$nome'].{Nome:name}" -o tsv)
-           echo "Conectando na VM $nome ( tentativa $j ) 
+           echo "Conectando na VM $nome ( tentativa $j )" 
          done
          
          echo "Conectado!"
