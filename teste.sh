@@ -1,17 +1,6 @@
 #!/bin/bash
 
-location[1]="koreacentral"
-location[2]="eastasia"
-location[3]="southeastasia"
-location[4]="norwayeast"
-location[5]="northeurope"
-location[6]="southafricanorth"
-location[7]="francecentral"
-location[8]="germanywestcentral"
-location[9]="koreasouth"
-location[10]="australiacentral"
-location[11]="australiaeast"
-location[12]="brazilsouth"
+location[1]="brazilsouth"
 
 #westcentralus sem VM
 
