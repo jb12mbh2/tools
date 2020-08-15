@@ -70,7 +70,7 @@ for assinatura in "${subscription[@]}"
          
          echo
          echo "Criando Extension da VM $nome na região $regiao da Subscription $assinatura"
-         cmd='"commandToExecute"':'"sh vm.sh nome"'
+         cmd='"commandToExecute"':'"sh vm.sh "' '"$nome"'
          cmd="$cmd"
          echo $cmd
          az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],$cmd}'
