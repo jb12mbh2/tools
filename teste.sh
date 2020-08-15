@@ -36,8 +36,10 @@ for assinatura in "${subscription[@]}"
      echo "Região $regiao da Subscription $assinatura"
      echo
      
+     RG=RG$(date +"%d%m%Y%H%M%S")
+     
      echo "Criando Resource Group na $regiao da Subscription $assinatura"
-     #az group create --name myResourceGroup --location $regiao --only-show-errors 
+     #az group create --name $RG --location $regiao --only-show-errors 
      echo    
      
      for i in {0..4}
@@ -45,7 +47,7 @@ for assinatura in "${subscription[@]}"
          nome=$(date +"%d%m%Y%H%M%S")
          #VMList[$i]=$nome
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
-         az vm create --resource-group myResourceGroup --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
+         az vm create --resource-group $RG --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
          echo
 
          CriandoVM=$(az vm list --query [$i].name)
@@ -73,7 +75,7 @@ for assinatura in "${subscription[@]}"
          
          cmd="$cmd"
          echo $cmd
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name "$nome" --resource-group myResourceGroup --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],$cmd}'
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name "$nome" --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],$cmd}'
          echo        
   
      done
