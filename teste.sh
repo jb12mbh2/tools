@@ -66,7 +66,7 @@ for assinatura in "${subscription[@]}"
               let "j++"
            fi 
            
-           echo "Aguardando provisionamento da VM $nome...(="$CriandoVM")"
+           echo "[$j] Aguardando provisionamento da VM $nome...(="$CriandoVM")"
            
          done 
          
