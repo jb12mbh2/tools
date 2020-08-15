@@ -39,7 +39,7 @@ for assinatura in "${subscription[@]}"
      RG=RG$(date +"%d%m%Y%H%M%S")
      
      echo "Criando Resource Group na $regiao da Subscription $assinatura"
-      az group create --name $RG --location $regiao --only-show-errors 
+     az group create --name $RG --location $regiao --only-show-errors 
      echo    
      
      for i in {0..4}
@@ -71,11 +71,11 @@ for assinatura in "${subscription[@]}"
          
          echo
          echo "Criando Extension da VM $nome na região $regiao da Subscription $assinatura"
-         cmd='"commandToExecute"':'"sh vm.sh var1"'
+         cmd='"commandToExecute"':'"sh vm.sh"'
          
          cmd="$cmd"
          echo $cmd
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name "$nome" --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],$cmd}'
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],$cmd}'
          echo        
   
      done
