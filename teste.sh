@@ -39,7 +39,7 @@ for assinatura in "${subscription[@]}"
      RG=RG$(date +"%d%m%Y%H%M%S")
      
      echo "Criando Resource Group na $regiao da Subscription $assinatura"
-     #az group create --name $RG --location $regiao --only-show-errors 
+     #az group create --name $RG --location $regiao --wait --only-show-errors 
      echo    
      
      for i in {0..4}
