@@ -1,7 +1,10 @@
 #!/bin/bash
 
-location[1]="canadacentral"
-location[2]="australiasoutheast"
+location[1]="southcentralus"
+location[2]="westcentralus"
+location[3]="eastus"
+location[4]="eastus2"
+location[5]="westus"
 
  #az account clear
  #az login -o table 
@@ -36,10 +39,10 @@ for assinatura in "${subscription[@]}"
      echo
      echo "Região $regiao da Subscription $assinatura"
      
-     RG=RG_$regiao_$(date +"%d%m%Y%H%M%S")
+     RG=RG$(date +"%d%m%Y%H%M%S")
      
      echo
-     echo "Criando Resource Group na $regiao da Subscription $assinatura"
+     echo "Criando Resource Group $RG na $regiao da Subscription $assinatura"
      az group create --name $RG --location $regiao --only-show-errors -o none
      
      for i in {0..4}
@@ -77,7 +80,7 @@ for assinatura in "${subscription[@]}"
          cmd="$cmd"
          #echo $cmd
          
-         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh TESTE3 "}'
+         az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh TESTE4 "}'
      done
      
   done
