@@ -1,8 +1,18 @@
 #!/bin/bash
 
-location[1]="eastus"
-location[2]="eastus2"
-location[3]="westus"
+location[1]="westus2"
+location[2]="koreacentral"
+location[3]="eastasia"
+location[4]="southeastasia"
+location[5]="norwayeast"
+location[6]="northeurope"
+location[7]="southafricanorth"
+location[8]="francecentral"
+location[9]="germanywestcentral"
+location[10]="koreasouth"
+location[11]="australiacentral"
+location[12]="australiaeast"
+location[13]="brazilsouth"
 
 #westcentralus sem VM
 
