@@ -53,8 +53,7 @@ for assinatura in "${subscription[@]}"
          CriandoVM=$(az vm list --query [$i].name)
          CriandoVM=${CriandoVM//'"'/}
          
-         j=0
-         
+         j=0         
          echo
          echo "Aguardando provisionamento da VM $nome..."
          
