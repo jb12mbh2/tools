@@ -44,36 +44,32 @@ for assinatura in "${subscription[@]}"
 
   for regiao in "${location[@]}"
    do
-     echo
-     echo "Região $regiao da Subscription $assinatura"
+     echo "Acessando Região $regiao da Subscription $assinatura"
      
      RG=RG$(date +"%d%m%Y%H%M%S")
-     
-     echo
+
      echo "Criando Resource Group $RG na região $regiao da Subscription $assinatura"
      az group create --name $RG --location $regiao --only-show-errors -o none
      
      for i in {0..4}
       do 
          nome=$(date +"%d%m%Y%H%M%S")
-         
-         echo
+
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
          az vm create --resource-group $RG --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
 
-         echo
          CriandoVM=$(az vm list --query "[?name=='$nome'].{Nome:name}" -o tsv)     
-
+         
+         j=0
          while [ "$CriandoVM" != "$nome" ]
          do
-         
-           CriandoVM=$(az vm list --query "[?name=='$nome'].{Nome:name}" -o tsv)
+           let "j++"
            sleep 1
-           echo "[$j] $CriandoVM" = "$nome"
-
+           CriandoVM=$(az vm list --query "[?name=='$nome'].{Nome:name}" -o tsv)
+           echo "Conectando na VM $nome ( tentativa $j ) 
          done
          
-         echo
+         echo "Conectado!"
          echo "Criando Extension da VM $nome na região $regiao da Subscription $assinatura"
          
          cmd='"commandToExecute"':'"sh vm.sh"'
@@ -81,6 +77,7 @@ for assinatura in "${subscription[@]}"
          #echo $cmd
          
          az vm extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --vm-name $nome --resource-group $RG --no-wait --settings '{"fileUris": ["https://raw.githubusercontent.com/jb12mbh2/tools/master/vm.sh"],"commandToExecute":"sh vm.sh VM_$regiao "}'
+         echo
      done
      
   done
