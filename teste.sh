@@ -61,7 +61,7 @@ for assinatura in "${subscription[@]}"
          
          echo
          echo "Criando VM $nome ($i) na região $regiao da Subscription $assinatura"
-         az vm create --resource-group $RG --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2" --no-wait
+         az vm create --resource-group $RG --name $nome --image UbuntuLTS --generate-ssh-keys --location $regiao --size "standard_f2"
 
          j=0         
          echo
