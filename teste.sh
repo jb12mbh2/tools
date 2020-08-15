@@ -42,7 +42,7 @@ for assinatura in "${subscription[@]}"
      RG=RG$(date +"%d%m%Y%H%M%S")
      
      echo
-     echo "Criando Resource Group $RG na $regiao da Subscription $assinatura"
+     echo "Criando Resource Group $RG na região $regiao da Subscription $assinatura"
      az group create --name $RG --location $regiao --only-show-errors -o none
      
      for i in {0..4}
