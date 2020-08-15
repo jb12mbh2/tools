@@ -36,7 +36,7 @@ for assinatura in "${subscription[@]}"
      echo
      echo "Região $regiao da Subscription $assinatura"
      
-     RG=RG_$regiao
+     RG=RG_$regiao_$(date +"%d%m%Y%H%M%S")
      
      echo
      echo "Criando Resource Group na $regiao da Subscription $assinatura"
@@ -62,12 +62,12 @@ for assinatura in "${subscription[@]}"
            CriandoVM=$(az vm list --query [$j].name)
            CriandoVM=${CriandoVM//'"'/}
            
+           echo "[$j] Aguardando provisionamento da VM $nome...(="$CriandoVM")"
+           
            if [ "$CriandoVM" ]; then 
               let "j++"
            fi 
-           
-           echo "[$j] Aguardando provisionamento da VM $nome...(="$CriandoVM")"
-           
+
          done 
          
          echo
