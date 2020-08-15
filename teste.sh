@@ -53,7 +53,7 @@ for assinatura in "${subscription[@]}"
          CriandoVM=$(az vm list --query [0].name)
          CriandoVM=${CriandoVM//'"'/}
          
-         while [ $CriandoVM != $nome ]
+         while [ "$CriandoVM" != "$nome" ]
          do
            sleep 2
            CriandoVM=$(az vm list --query [0].name)
