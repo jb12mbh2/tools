@@ -24,8 +24,8 @@ location[21]="australiacentral"
 location[22]="australiaeast"
 location[23]="brazilsouth"
 
- az account clear
- az login -o table
+ #az account clear
+ #az login -o table
  
  echo
  
@@ -40,11 +40,10 @@ a[$i]="Login ok!"
        let "i++"
     fi
 
-    a[$i]=$( az account list --all --query '['$i'].id' -o json )
+    a[$i]=$( az account list --all --query '['$i'].id' -o tsv )
 
     if [ "${a[$i]}" ]; then
        subscription[$i]=${a[$i]}
-       subscription[$i]=${subscription[$i]//'"'/}
     fi
 done
 
