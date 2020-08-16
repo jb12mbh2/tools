@@ -1,18 +1,28 @@
 #!/bin/bash
 
-location[2]="northeurope"
-location[3]="southafricanorth"
-location[4]="francecentral"
-location[5]="germanywestcentral"
-location[7]="australiacentral"
-location[8]="australiaeast"
-location[9]="brazilsouth"
-
-#SEM VM
-
-#norwayeast
-#westcentralus
-#koreasouth
+location[1]="centralus"
+location[2]="uksouth"
+location[3]="ukwest"
+location[4]="australiasoutheast"
+location[5]="canadacentral"
+location[6]="southcentralus"
+#location[7]="westcentralus"
+location[7]="eastus"
+location[8]="eastus2"
+location[9]="westus"
+location[10]="westus2"
+location[11]="koreacentral"
+location[12]="eastasia"
+location[13]="southeastasia"
+#location[15]="norwayeast"
+location[14]="northeurope"
+location[15]="southafricanorth"
+location[16]="francecentral"
+location[17]="germanywestcentral"
+#location[20]="koreasouth"
+location[18]="australiacentral"
+location[19]="australiaeast"
+location[20]="brazilsouth"
 
  #az account clear
  #az login -o table 
